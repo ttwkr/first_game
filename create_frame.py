@@ -23,6 +23,10 @@ pygame.display.set_caption('nado_game')
 # 이벤트 루프
 running = True  # 게임이 진행중인가?
 
+# 이동할 좌표
+to_x = 0
+to_y = 0
+
 while running:
     for event in pygame.event.get():  # 이벤트를 받는다
         if event.type == pygame.QUIT:  # 창을 껏을때
@@ -30,9 +34,15 @@ while running:
 
         if event.type == pygame.KEYDOWN:  # 키 눌렸을때
             if event.key == pygame.K_RIGHT:  # 오른쪽키 눌렀을때
-                pass
+                to_x += 5
             elif event.key == pygame.K_LEFT:  # 왼쪽방향키 눌렀을때
-                pass
+                to_x -= 5
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                to_x = 0
+
+    character_x_pos += to_x
     # screen.fill((0,0,255)) RGB값을 넣어준다
     # 또는
     screen.blit(background, (0, 0))  # 배경그리기
