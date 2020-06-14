@@ -1,6 +1,6 @@
 import pygame
-from . import *
-
+from .ddong import *
+import random
 pygame.init()
 
 screen_width = 480
@@ -17,6 +17,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     screen.blit(background, (0, 0))
-    screen.blit(ddong.Ddong(), (0, 0))
+    screen.blit(ddong, (0, random.randrange(0, screen_height)))
     pygame.display.update()
 pygame.quit()
